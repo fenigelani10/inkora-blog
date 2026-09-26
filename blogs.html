@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Blogs — INKORA</title>
+  <meta name="description" content="Explore insightful essays, analyses, and stories across technology, travel, lifestyle, creativity, and personal development." />
+  
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Header / Sticky Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="INKORA Home">
+          <svg class="brand-logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#logoGrad2)" fill-opacity="0.15" />
+            <path d="M16 6C10.5 6 6 10.5 6 16c0 3.9 2.2 7.2 5.4 8.9L16 20l4.6 4.9C23.8 23.2 26 19.9 26 16c0-5.5-4.5-10-10-10z" fill="url(#logoGrad2)" />
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff" />
+          </svg>
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn open-search-modal" aria-label="Search stories (Ctrl+K)" title="Search (Ctrl+K)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+
+          <div id="navbarAuth" class="nav-auth-slot">
+            <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo">
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="blogs.html" class="mobile-nav-link">All Blogs</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About INKORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact & Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-auth" id="mobileNavAuth">
+      <a href="login.html" class="btn btn-outline btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Get Started</a>
+    </div>
+  </aside>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Search Modal Overlay -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="modalSearchTitle">
+    <div class="search-modal-box">
+      <div class="modal-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="modalSearchInput" 
+          class="modal-search-input" 
+          placeholder="Search by topic, author, or keyword... (Esc to close)" 
+          autocomplete="off"
+        />
+        <button class="close-search-modal" id="closeSearchModal">ESC</button>
+      </div>
+      <div class="search-results-list" id="modalSearchResults"></div>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <!-- Page Title Header -->
+      <div class="section-header-centered reveal-on-scroll">
+        <span class="section-badge">The Complete Archive</span>
+        <h1 class="section-title">Explore All Perspectives</h1>
+        <p class="section-subtitle">
+          Immerse yourself in our collection of essays, practical reflections, and philosophical explorations.
+        </p>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="filter-toolbar reveal-on-scroll">
+        <!-- Search and Sort row -->
+        <div class="search-and-sort">
+          <div class="main-search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="blogsPageSearch" 
+              class="main-search-input" 
+              placeholder="Search by title, author, keyword, or excerpt..." 
+            />
+          </div>
+
+          <div class="sort-dropdown-wrap">
+            <label for="blogsSortSelect" style="font-size: 0.875rem; color: var(--text-muted); font-weight: 500;">Sort by:</label>
+            <select id="blogsSortSelect" class="sort-select" aria-label="Sort blogs">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="popular">Most Liked</option>
+              <option value="readtime">Quick Reads</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Pills Row -->
+        <div class="category-filter-pills" id="categoryPillsContainer" role="tablist" aria-label="Filter by category">
+          <!-- Dynamically populated or updated -->
+        </div>
+      </div>
+
+      <!-- Active Filter / Result Count Indicator -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <span id="resultsCountText" style="font-size: 0.875rem; color: var(--text-light); font-weight: 600;">
+          Showing all stories
+        </span>
+        <button id="resetFiltersBtn" class="btn btn-ghost btn-sm d-none" onclick="resetAllFilters()">
+          Clear Filters ✕
+        </button>
+      </div>
+
+      <!-- Responsive Blog Grid -->
+      <div class="blog-grid" id="allBlogsGrid">
+        <!-- Injected dynamically by blogs.js filter runner -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-results-state d-none" id="noBlogsFound">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+        <h3 style="font-size: 1.5rem; margin-bottom: 8px;">No matching stories found</h3>
+        <p style="color: var(--text-muted); max-width: 420px; margin: 0 auto 20px auto;">
+          We couldn't find any articles matching your search criteria. Try modifying your search term or exploring a different category.
+        </p>
+        <button class="btn btn-outline" onclick="resetAllFilters()">Reset All Filters</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter Section -->
+  <section class="section section-sm" style="background: var(--bg-surface-elevated);">
+    <div class="container container-narrow">
+      <div class="newsletter-card reveal-on-scroll">
+        <span class="section-badge">Stay Inspired</span>
+        <h2 class="newsletter-title">Stay in the loop.</h2>
+        <p class="newsletter-desc">
+          Subscribe to get our weekly reading notes, editorial picks, and author essays delivered directly to your inbox.
+        </p>
+
+        <form class="newsletter-form" id="blogsNewsletterForm" novalidate>
+          <div class="newsletter-input-group">
+            <input 
+              type="email" 
+              class="newsletter-input" 
+              placeholder="Enter your email address..." 
+              aria-label="Email address"
+              required 
+            />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+          <div class="newsletter-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand-logo">
+            <span>INKORA<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-brand-desc">
+            Stories, ideas and perspectives worth reading. An independent publication dedicated to depth, craft, and human insight.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="blogs.html" class="footer-link">All Blogs</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Topics</h4>
+          <ul class="footer-links">
+            <li><a href="blogs.html?category=Technology" class="footer-link">Technology</a></li>
+            <li><a href="blogs.html?category=Travel" class="footer-link">Travel</a></li>
+            <li><a href="blogs.html?category=Lifestyle" class="footer-link">Lifestyle</a></li>
+            <li><a href="blogs.html?category=Creativity" class="footer-link">Creativity</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Membership</h4>
+          <ul class="footer-links">
+            <li><a href="login.html" class="footer-link">Reader Sign In</a></li>
+            <li><a href="register.html" class="footer-link">Create Account</a></li>
+            <li><a href="about.html#values" class="footer-link">Editorial Guidelines</a></li>
+            <li><a href="contact.html" class="footer-link">Help & Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2026</span> INKORA. All rights reserved. Crafted for curious minds.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html" class="footer-link">Privacy Policy</a>
+          <a href="about.html" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/blogs.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    // Blog filtering, searching, and sorting controller
+    let currentCategory = "All";
+    let currentSearchTerm = "";
+    let currentSort = "newest";
+
+    function initBlogsPage() {
+      // Parse URL queries if coming from category links or search
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get("category");
+      const searchParam = urlParams.get("search");
+
+      if (catParam && window.INKORA_BLOGS.categories.includes(catParam)) {
+        currentCategory = catParam;
+      }
+      if (searchParam) {
+        currentSearchTerm = searchParam;
+        const searchInput = document.getElementById("blogsPageSearch");
+        if (searchInput) searchInput.value = searchParam;
+      }
+
+      renderCategoryPills();
+      bindEvents();
+      renderFilteredBlogs();
+    }
+
+    function renderCategoryPills() {
+      const pillsContainer = document.getElementById("categoryPillsContainer");
+      if (!pillsContainer || !window.INKORA_BLOGS) return;
+
+      pillsContainer.innerHTML = window.INKORA_BLOGS.categories.map(cat => `
+        <button 
+          class="filter-pill ${cat === currentCategory ? 'active' : ''}" 
+          onclick="selectCategory('${cat}')"
+          role="tab"
+          aria-selected="${cat === currentCategory}"
+        >
+          ${cat}
+        </button>
+      `).join("");
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      renderCategoryPills();
+      renderFilteredBlogs();
+
+      // Update URL without full reload
+      const url = new URL(window.location);
+      if (cat === "All") {
+        url.searchParams.delete("category");
+      } else {
+        url.searchParams.set("category", cat);
+      }
+      window.history.replaceState({}, '', url);
+    }
+
+    function bindEvents() {
+      const searchInput = document.getElementById("blogsPageSearch");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          currentSearchTerm = e.target.value.trim().toLowerCase();
+          renderFilteredBlogs();
+        });
+      }
+
+      const sortSelect = document.getElementById("blogsSortSelect");
+      if (sortSelect) {
+        sortSelect.addEventListener("change", (e) => {
+          currentSort = e.target.value;
+          renderFilteredBlogs();
+        });
+      }
+    }
+
+    function renderFilteredBlogs() {
+      const grid = document.getElementById("allBlogsGrid");
+      const emptyState = document.getElementById("noBlogsFound");
+      const countText = document.getElementById("resultsCountText");
+      const resetBtn = document.getElementById("resetFiltersBtn");
+
+      if (!grid || !window.INKORA_BLOGS) return;
+
+      let blogs = [...window.INKORA_BLOGS.data];
+
+      // 1. Filter by category
+      if (currentCategory !== "All") {
+        blogs = blogs.filter(b => b.category.toLowerCase() === currentCategory.toLowerCase());
+      }
+
+      // 2. Filter by search term
+      if (currentSearchTerm !== "") {
+        blogs = blogs.filter(b => 
+          b.title.toLowerCase().includes(currentSearchTerm) ||
+          b.description.toLowerCase().includes(currentSearchTerm) ||
+          b.category.toLowerCase().includes(currentSearchTerm) ||
+          b.author.name.toLowerCase().includes(currentSearchTerm)
+        );
+      }
+
+      // 3. Sort
+      if (currentSort === "newest") {
+        blogs.sort((a, b) => b.id - a.id);
+      } else if (currentSort === "oldest") {
+        blogs.sort((a, b) => a.id - b.id);
+      } else if (currentSort === "popular") {
+        blogs.sort((a, b) => b.likes - a.likes);
+      } else if (currentSort === "readtime") {
+        blogs.sort((a, b) => parseInt(a.readingTime) - parseInt(b.readingTime));
+      }
+
+      // Update Result count and Reset button
+      const isFiltered = currentCategory !== "All" || currentSearchTerm !== "";
+      if (resetBtn) resetBtn.classList.toggle("d-none", !isFiltered);
+
+      if (countText) {
+        if (isFiltered) {
+          countText.textContent = `Showing ${blogs.length} ${blogs.length === 1 ? 'story' : 'stories'} for ${currentCategory !== 'All' ? currentCategory : ''} ${currentSearchTerm ? `"${currentSearchTerm}"` : ''}`;
+        } else {
+          countText.textContent = `Showing all ${blogs.length} stories`;
+        }
+      }
+
+      // Render cards or empty state
+      if (blogs.length === 0) {
+        grid.innerHTML = "";
+        if (emptyState) emptyState.classList.remove("d-none");
+      } else {
+        if (emptyState) emptyState.classList.add("d-none");
+        grid.innerHTML = blogs.map(b => window.INKORA_BLOGS.createBlogCard(b)).join("");
+      }
+    }
+
+    function resetAllFilters() {
+      currentCategory = "All";
+      currentSearchTerm = "";
+      const searchInput = document.getElementById("blogsPageSearch");
+      if (searchInput) searchInput.value = "";
+      
+      const url = new URL(window.location);
+      url.searchParams.delete("category");
+      url.searchParams.delete("search");
+      window.history.replaceState({}, '', url);
+
+      renderCategoryPills();
+      renderFilteredBlogs();
+    }
+
+    document.addEventListener("DOMContentLoaded", initBlogsPage);
+  </script>
+</body>
+</html>

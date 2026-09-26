@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — INKORA</title>
+  <meta name="description" content="Sign in to your INKORA account to save stories, join conversations, and customize your reading experience." />
+  
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Header / Sticky Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="INKORA Home">
+          <svg class="brand-logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="logoGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#logoGrad4)" fill-opacity="0.15" />
+            <path d="M16 6C10.5 6 6 10.5 6 16c0 3.9 2.2 7.2 5.4 8.9L16 20l4.6 4.9C23.8 23.2 26 19.9 26 16c0-5.5-4.5-10-10-10z" fill="url(#logoGrad4)" />
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff" />
+          </svg>
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+          
+          <div id="navbarAuth" class="nav-auth-slot">
+            <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo">
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="blogs.html" class="mobile-nav-link">All Blogs</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About INKORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact & Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-auth" id="mobileNavAuth">
+      <a href="login.html" class="btn btn-outline btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Get Started</a>
+    </div>
+  </aside>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Centered Login Page Area -->
+  <main class="auth-page">
+    <div class="auth-card reveal-on-scroll">
+      <div class="auth-header">
+        <span class="section-badge">Welcome Back</span>
+        <h1 class="auth-title">Sign in to INKORA</h1>
+        <p class="auth-subtitle">Continue exploring thoughtfully curated essays and ideas.</p>
+      </div>
+
+      <!-- Inline General Alert Message Box -->
+      <div id="loginGeneralAlert" class="form-alert d-none" role="alert"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" novalidate>
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">Email Address</label>
+          <div class="input-with-icon">
+            <input 
+              type="email" 
+              id="loginEmail" 
+              class="form-input" 
+              placeholder="name@example.com" 
+              autocomplete="email"
+              required 
+            />
+          </div>
+          <span id="loginEmailError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="loginPassword" class="form-label">Password</label>
+          <div class="input-with-icon">
+            <input 
+              type="password" 
+              id="loginPassword" 
+              class="form-input" 
+              placeholder="••••••••" 
+              autocomplete="current-password"
+              required 
+            />
+            <button 
+              type="button" 
+              class="input-icon-btn" 
+              onclick="INKORA_AUTH.togglePasswordVisibility('loginPassword', this)" 
+              aria-label="Show password"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <span id="loginPasswordError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Remember Me & Forgot Password Row -->
+        <div class="form-row-between">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="rememberMe" />
+            <span>Remember me</span>
+          </label>
+          <a href="javascript:void(0)" class="forgot-link" onclick="INKORA_AUTH.promptForgotPassword()">
+            Forgot password?
+          </a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-full btn-lg">
+          Sign In
+        </button>
+      </form>
+
+      <!-- Switch to Register -->
+      <div class="auth-footer-prompt">
+        Don't have an account yet? <a href="register.html">Create one for free</a>
+      </div>
+
+      <!-- Demo Credentials Helper -->
+      <div class="demo-hint-box">
+        <strong>Demo Credentials (or create a new account):</strong>
+        Email: <code>demo@inkora.com</code><br />
+        Password: <code>password123</code>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; <span id="currentYear">2026</span> INKORA. All rights reserved.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="blogs.html" class="footer-link">All Blogs</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/blogs.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

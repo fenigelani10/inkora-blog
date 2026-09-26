@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Inquiries — INKORA</title>
+  <meta name="description" content="Get in touch with the INKORA editorial team for questions, story pitches, corrections, or partnerships." />
+  
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Header / Sticky Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="INKORA Home">
+          <svg class="brand-logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="logoGrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#logoGrad7)" fill-opacity="0.15" />
+            <path d="M16 6C10.5 6 6 10.5 6 16c0 3.9 2.2 7.2 5.4 8.9L16 20l4.6 4.9C23.8 23.2 26 19.9 26 16c0-5.5-4.5-10-10-10z" fill="url(#logoGrad7)" />
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff" />
+          </svg>
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn open-search-modal" aria-label="Search stories (Ctrl+K)" title="Search (Ctrl+K)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+
+          <div id="navbarAuth" class="nav-auth-slot">
+            <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo">
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="blogs.html" class="mobile-nav-link">All Blogs</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About INKORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact & Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-auth" id="mobileNavAuth">
+      <a href="login.html" class="btn btn-outline btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Get Started</a>
+    </div>
+  </aside>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Search Modal Overlay -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="modalSearchTitle">
+    <div class="search-modal-box">
+      <div class="modal-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="modalSearchInput" 
+          class="modal-search-input" 
+          placeholder="Search by topic, author, or keyword... (Esc to close)" 
+          autocomplete="off"
+        />
+        <button class="close-search-modal" id="closeSearchModal">ESC</button>
+      </div>
+      <div class="search-results-list" id="modalSearchResults"></div>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header-centered reveal-on-scroll">
+        <span class="section-badge">Get In Touch</span>
+        <h1 class="section-title">Start a Conversation</h1>
+        <p class="section-subtitle">
+          Have an essay proposal, feedback on a story, or a question for our editors? We would love to hear from you.
+        </p>
+      </div>
+
+      <!-- Split Contact Layout -->
+      <div class="contact-layout reveal-on-scroll delay-1">
+        <!-- Contact Information & Details -->
+        <div class="contact-info-card">
+          <div>
+            <h2 style="font-size: 2rem; margin-bottom: 16px;">We read every dispatch.</h2>
+            <p style="color: var(--text-muted); font-size: 1.0625rem; line-height: 1.6;">
+              Whether you are an aspiring author looking to submit an essay, a fellow curator proposing a collaboration, or a curious reader, our virtual doors are open.
+            </p>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Editorial Submissions</strong>
+              <span>editorial@inkora.pub</span>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>General & Press Inquiries</strong>
+              <span>hello@inkora.pub</span>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Headquarters</strong>
+              <span>San Francisco & Paris (Global Editorial Collective)</span>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="faq-accordion" id="contactFaq">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Frequently Asked Questions</h3>
+            
+            <div class="faq-item is-open">
+              <button class="faq-trigger" onclick="toggleFaq(this)">
+                <span>How can I submit an essay for review?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-content">
+                Send a 300-word abstract along with a link to your previous work using the form on this page or via editorial@inkora.pub. Our review cycle takes 3–5 business days.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" onclick="toggleFaq(this)">
+                <span>Are published essays paid?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-content">
+                Yes! We compensate all accepted long-form feature essays at competitive editorial word rates because we believe human craft deserves genuine remuneration.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" onclick="toggleFaq(this)">
+                <span>Can I reprint or republish INKORA stories?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-content">
+                Excerpts under 100 words may be quoted with attribution and a direct link. For syndication or translation rights, please reach out to press@inkora.pub.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="auth-card" style="max-width: 100%; margin: 0;">
+          <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px;">Send a Message</h2>
+          <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 24px;">
+            Fill in the details below and an editor will follow up promptly.
+          </p>
+
+          <div id="contactFormAlert" class="form-alert d-none" role="alert"></div>
+
+          <form id="contactForm" class="auth-form" novalidate>
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="contactName" class="form-label">Your Name</label>
+              <input 
+                type="text" 
+                id="contactName" 
+                class="form-input" 
+                placeholder="Eleanor Vance" 
+                required 
+              />
+              <span id="contactNameError" class="field-error-msg d-none"></span>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label for="contactEmail" class="form-label">Email Address</label>
+              <input 
+                type="email" 
+                id="contactEmail" 
+                class="form-input" 
+                placeholder="eleanor@example.com" 
+                required 
+              />
+              <span id="contactEmailError" class="field-error-msg d-none"></span>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+              <label for="contactSubject" class="form-label">Subject</label>
+              <input 
+                type="text" 
+                id="contactSubject" 
+                class="form-input" 
+                placeholder="Story pitch / Reader reflection / Feedback" 
+                required 
+              />
+              <span id="contactSubjectError" class="field-error-msg d-none"></span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="contactMessage" class="form-label">Your Message</label>
+              <textarea 
+                id="contactMessage" 
+                class="form-input" 
+                style="min-height: 140px; resize: vertical;" 
+                placeholder="Share your thoughts, story proposal, or question in detail..."
+                required
+              ></textarea>
+              <span id="contactMessageError" class="field-error-msg d-none"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-full btn-lg">
+              Dispatch Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand-logo">
+            <span>INKORA<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-brand-desc">
+            Stories, ideas and perspectives worth reading. An independent publication dedicated to depth, craft, and human insight.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="blogs.html" class="footer-link">All Blogs</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Topics</h4>
+          <ul class="footer-links">
+            <li><a href="blogs.html?category=Technology" class="footer-link">Technology</a></li>
+            <li><a href="blogs.html?category=Travel" class="footer-link">Travel</a></li>
+            <li><a href="blogs.html?category=Lifestyle" class="footer-link">Lifestyle</a></li>
+            <li><a href="blogs.html?category=Creativity" class="footer-link">Creativity</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Membership</h4>
+          <ul class="footer-links">
+            <li><a href="login.html" class="footer-link">Reader Sign In</a></li>
+            <li><a href="register.html" class="footer-link">Create Account</a></li>
+            <li><a href="about.html#values" class="footer-link">Editorial Guidelines</a></li>
+            <li><a href="contact.html" class="footer-link">Help & Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2026</span> INKORA. All rights reserved. Crafted for curious minds.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html" class="footer-link">Privacy Policy</a>
+          <a href="about.html" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/blogs.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    // FAQ Accordion Toggle
+    function toggleFaq(button) {
+      const item = button.closest(".faq-item");
+      const wasOpen = item.classList.contains("is-open");
+
+      // Optional: close other items or allow multi-open
+      item.classList.toggle("is-open", !wasOpen);
+    }
+
+    // Contact Form Validation and Submission
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById("contactName");
+        const emailInput = document.getElementById("contactEmail");
+        const subjectInput = document.getElementById("contactSubject");
+        const messageInput = document.getElementById("contactMessage");
+
+        const nameError = document.getElementById("contactNameError");
+        const emailError = document.getElementById("contactEmailError");
+        const subjectError = document.getElementById("contactSubjectError");
+        const messageError = document.getElementById("contactMessageError");
+        const generalAlert = document.getElementById("contactFormAlert");
+
+        // Clear previous errors
+        [nameError, emailError, subjectError, messageError].forEach(el => {
+          el.textContent = "";
+          el.classList.add("d-none");
+        });
+        [nameInput, emailInput, subjectInput, messageInput].forEach(inp => inp.classList.remove("input-error"));
+        generalAlert.className = "form-alert d-none";
+        generalAlert.textContent = "";
+
+        let hasError = false;
+
+        // Name
+        const nameVal = nameInput.value.trim();
+        if (!nameVal) {
+          nameError.textContent = "Please enter your name.";
+          nameError.classList.remove("d-none");
+          nameInput.classList.add("input-error");
+          hasError = true;
+        } else if (nameVal.length < 2) {
+          nameError.textContent = "Name must be at least 2 characters.";
+          nameError.classList.remove("d-none");
+          nameInput.classList.add("input-error");
+          hasError = true;
+        }
+
+        // Email
+        const emailVal = emailInput.value.trim();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailVal) {
+          emailError.textContent = "Please enter your email address.";
+          emailError.classList.remove("d-none");
+          emailInput.classList.add("input-error");
+          hasError = true;
+        } else if (!emailRegex.test(emailVal)) {
+          emailError.textContent = "Please enter a valid email format.";
+          emailError.classList.remove("d-none");
+          emailInput.classList.add("input-error");
+          hasError = true;
+        }
+
+        // Subject
+        const subjectVal = subjectInput.value.trim();
+        if (!subjectVal) {
+          subjectError.textContent = "Please provide a subject line.";
+          subjectError.classList.remove("d-none");
+          subjectInput.classList.add("input-error");
+          hasError = true;
+        } else if (subjectVal.length < 3) {
+          subjectError.textContent = "Subject must be at least 3 characters.";
+          subjectError.classList.remove("d-none");
+          subjectInput.classList.add("input-error");
+          hasError = true;
+        }
+
+        // Message
+        const messageVal = messageInput.value.trim();
+        if (!messageVal) {
+          messageError.textContent = "Please enter your message.";
+          messageError.classList.remove("d-none");
+          messageInput.classList.add("input-error");
+          hasError = true;
+        } else if (messageVal.length < 10) {
+          messageError.textContent = "Please provide a little more detail (at least 10 characters).";
+          messageError.classList.remove("d-none");
+          messageInput.classList.add("input-error");
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Success state
+        generalAlert.className = "form-alert alert-success";
+        generalAlert.innerHTML = `
+          <strong>Message dispatched!</strong><br />
+          Thank you, ${nameVal}. Our editorial team has received your inquiry and will reply to ${emailVal} within 2 business days.
+        `;
+
+        if (window.showToast) {
+          window.showToast("Message sent successfully! ✨", "success");
+        }
+
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

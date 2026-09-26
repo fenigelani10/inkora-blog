@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create an Account — INKORA</title>
+  <meta name="description" content="Join INKORA to bookmark inspiring essays, participate in discussions, and receive our weekly editorial dispatch." />
+  
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Header / Sticky Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="INKORA Home">
+          <svg class="brand-logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="logoGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#logoGrad5)" fill-opacity="0.15" />
+            <path d="M16 6C10.5 6 6 10.5 6 16c0 3.9 2.2 7.2 5.4 8.9L16 20l4.6 4.9C23.8 23.2 26 19.9 26 16c0-5.5-4.5-10-10-10z" fill="url(#logoGrad5)" />
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff" />
+          </svg>
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+          
+          <div id="navbarAuth" class="nav-auth-slot">
+            <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo">
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="blogs.html" class="mobile-nav-link">All Blogs</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About INKORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact & Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-auth" id="mobileNavAuth">
+      <a href="login.html" class="btn btn-outline btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Get Started</a>
+    </div>
+  </aside>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Centered Register Page Area -->
+  <main class="auth-page">
+    <div class="auth-card reveal-on-scroll">
+      <div class="auth-header">
+        <span class="section-badge">Join The Circle</span>
+        <h1 class="auth-title">Create your Account</h1>
+        <p class="auth-subtitle">Become part of our reader community. Completely free, always.</p>
+      </div>
+
+      <!-- General alert box -->
+      <div id="regGeneralAlert" class="form-alert d-none" role="alert"></div>
+
+      <!-- Registration Form -->
+      <form id="registerForm" class="auth-form" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="regFullName" class="form-label">Full Name</label>
+          <input 
+            type="text" 
+            id="regFullName" 
+            class="form-input" 
+            placeholder="e.g. Eleanor Vance" 
+            autocomplete="name"
+            required 
+          />
+          <span id="regNameError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group">
+          <label for="regEmail" class="form-label">Email Address</label>
+          <input 
+            type="email" 
+            id="regEmail" 
+            class="form-input" 
+            placeholder="eleanor@example.com" 
+            autocomplete="email"
+            required 
+          />
+          <span id="regEmailError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="regPassword" class="form-label">Password</label>
+          <div class="input-with-icon">
+            <input 
+              type="password" 
+              id="regPassword" 
+              class="form-input" 
+              placeholder="Minimum 6 characters" 
+              autocomplete="new-password"
+              required 
+            />
+            <button 
+              type="button" 
+              class="input-icon-btn" 
+              onclick="INKORA_AUTH.togglePasswordVisibility('regPassword', this)" 
+              aria-label="Show password"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <span id="regPasswordError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="regConfirmPassword" class="form-label">Confirm Password</label>
+          <div class="input-with-icon">
+            <input 
+              type="password" 
+              id="regConfirmPassword" 
+              class="form-input" 
+              placeholder="Re-enter your password" 
+              autocomplete="new-password"
+              required 
+            />
+            <button 
+              type="button" 
+              class="input-icon-btn" 
+              onclick="INKORA_AUTH.togglePasswordVisibility('regConfirmPassword', this)" 
+              aria-label="Show password"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <span id="regConfirmError" class="field-error-msg d-none"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-full btn-lg">
+          Create Account
+        </button>
+      </form>
+
+      <!-- Switch to Login -->
+      <div class="auth-footer-prompt">
+        Already have an account? <a href="login.html">Sign in here</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; <span id="currentYear">2026</span> INKORA. All rights reserved.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="blogs.html" class="footer-link">All Blogs</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/blogs.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

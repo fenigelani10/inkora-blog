@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About INKORA — Our Mission & Editorial Philosophy</title>
+  <meta name="description" content="Learn about INKORA's philosophy: slow reading, editorial craft, and giving thoughtful voices a quiet sanctuary on the web." />
+  
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Header / Sticky Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="INKORA Home">
+          <svg class="brand-logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="logoGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#logoGrad6)" fill-opacity="0.15" />
+            <path d="M16 6C10.5 6 6 10.5 6 16c0 3.9 2.2 7.2 5.4 8.9L16 20l4.6 4.9C23.8 23.2 26 19.9 26 16c0-5.5-4.5-10-10-10z" fill="url(#logoGrad6)" />
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff" />
+          </svg>
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn open-search-modal" aria-label="Search stories (Ctrl+K)" title="Search (Ctrl+K)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+
+          <div id="navbarAuth" class="nav-auth-slot">
+            <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo">
+          <span>INKORA<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="blogs.html" class="mobile-nav-link">All Blogs</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About INKORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact & Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-auth" id="mobileNavAuth">
+      <a href="login.html" class="btn btn-outline btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Get Started</a>
+    </div>
+  </aside>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Search Modal Overlay -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="modalSearchTitle">
+    <div class="search-modal-box">
+      <div class="modal-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="modalSearchInput" 
+          class="modal-search-input" 
+          placeholder="Search by topic, author, or keyword... (Esc to close)" 
+          autocomplete="off"
+        />
+        <button class="close-search-modal" id="closeSearchModal">ESC</button>
+      </div>
+      <div class="search-results-list" id="modalSearchResults"></div>
+    </div>
+  </div>
+
+  <main>
+    <!-- About Hero -->
+    <section class="section">
+      <div class="container container-editorial">
+        <div class="section-header-centered reveal-on-scroll">
+          <span class="section-badge">Our Manifesto</span>
+          <h1 class="section-title" style="font-size: 3.5rem;">Words with weight. Ideas with grace.</h1>
+          <p class="section-subtitle">
+            INKORA was founded on a simple conviction: the internet does not need more hurried noise; it needs thoughtful, resonant sanctuaries.
+          </p>
+        </div>
+
+        <div class="article-body reveal-on-scroll">
+          <p class="lead-text">
+            In an attention economy dominated by sensational headlines, infinite algorithmic doomscrolling, and manufactured controversy, deep reading has become an act of quiet rebellion.
+          </p>
+          <p>
+            INKORA is an independent editorial publishing platform celebrating long-form reflection, intentional living, design craftsmanship, and humane technology. We bring together essays from independent writers, philosophers, developers, and artists who care about lasting resonance rather than temporary virality.
+          </p>
+          <p>
+            Every piece published on our platform is crafted with typographical care, plenty of breathing room, and zero intrusive ads, ensuring that your reading experience remains calm, dignified, and intellectually nourishing.
+          </p>
+        </div>
+
+        <!-- Banner Quote -->
+        <div class="editorial-quote-banner reveal-on-scroll">
+          <blockquote>
+            "To read deeply is to inhabit the consciousness of another mind without surrendering your own."
+          </blockquote>
+          <span style="font-size: 0.875rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+            — INKORA Editorial Collective
+          </span>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid reveal-on-scroll">
+          <div class="stat-card">
+            <div class="stat-number">99K+</div>
+            <div class="stat-label">Monthly Readers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">180+</div>
+            <div class="stat-label">Published Essays</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">45+</div>
+            <div class="stat-label">Global Contributors</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Ad-Free & Independent</div>
+          </div>
+        </div>
+
+        <!-- Core Editorial Pillars -->
+        <div style="margin-top: 60px;" id="values">
+          <h2 style="font-size: 2.25rem; margin-bottom: 24px;">Our Core Pillars</h2>
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="padding: 24px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 8px;">1. Depth Over Velocity</h3>
+              <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0;">We favor thoughtful, timeless essays over reactive news cycles. If an idea will not matter in five years, we don't publish it.</p>
+            </div>
+            <div style="padding: 24px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 8px;">2. Aesthetic Sanctuary</h3>
+              <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0;">Typography matters. Whitespace is not wasted space—it is breathing room for your mind to absorb complex thoughts.</p>
+            </div>
+            <div style="padding: 24px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 8px;">3. Human Sovereignty</h3>
+              <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0;">We respect our readers. No trackers, no pop-up traps, and no dark design patterns intended to extract attention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Voices / Team Section -->
+    <section class="section" style="background: var(--bg-surface-elevated);">
+      <div class="container">
+        <div class="section-header-centered reveal-on-scroll">
+          <span class="section-badge">Contributors</span>
+          <h2 class="section-title">The Editorial Voices</h2>
+          <p class="section-subtitle">Meet the curators and essayists bringing diverse perspectives to INKORA.</p>
+        </div>
+
+        <div class="team-grid reveal-on-scroll">
+          <!-- Team Member 1 -->
+          <div class="team-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Marcus Vance" class="team-avatar" />
+            <h3 class="team-name">Marcus Vance</h3>
+            <span class="team-role">Principal Tech Essayist</span>
+            <p class="team-bio">Writing on the cultural impact of artificial intelligence, digital ethics, and lightweight software craftsmanship.</p>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="team-card">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Sienna Brooks" class="team-avatar" />
+            <h3 class="team-name">Sienna Brooks</h3>
+            <span class="team-role">Travel & Culture Editor</span>
+            <p class="team-bio">Investigating hidden landscapes, sustainable geographic exploration, and slow wandering around the globe.</p>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div class="team-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Julian Rivera" class="team-avatar" />
+            <h3 class="team-name">Julian Rivera</h3>
+            <span class="team-role">Wellness & Lifestyle Critic</span>
+            <p class="team-bio">Exploring analogue rituals, circadian habits, and creating tranquil sanctuaries amidst modern urban noise.</p>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div class="team-card">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Claire Dupont" class="team-avatar" />
+            <h3 class="team-name">Claire Dupont</h3>
+            <span class="team-role">Design Director</span>
+            <p class="team-bio">Curating conversations around aesthetic philosophy, classical typography, and spatial minimalism.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join CTA -->
+    <section class="section section-sm">
+      <div class="container container-narrow" style="text-align: center;">
+        <span class="section-badge">Join Us</span>
+        <h2 class="section-title" style="margin-bottom: 16px;">Begin Your Journey With Us</h2>
+        <p class="section-subtitle" style="margin: 0 auto 32px auto;">
+          Whether you are here to savor our archives or share your own essay with our global audience, there is a seat for you at the table.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="blogs.html" class="btn btn-primary btn-lg">Explore Essays</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">Pitch a Story</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand-logo">
+            <span>INKORA<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-brand-desc">
+            Stories, ideas and perspectives worth reading. An independent publication dedicated to depth, craft, and human insight.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="blogs.html" class="footer-link">All Blogs</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Topics</h4>
+          <ul class="footer-links">
+            <li><a href="blogs.html?category=Technology" class="footer-link">Technology</a></li>
+            <li><a href="blogs.html?category=Travel" class="footer-link">Travel</a></li>
+            <li><a href="blogs.html?category=Lifestyle" class="footer-link">Lifestyle</a></li>
+            <li><a href="blogs.html?category=Creativity" class="footer-link">Creativity</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Membership</h4>
+          <ul class="footer-links">
+            <li><a href="login.html" class="footer-link">Reader Sign In</a></li>
+            <li><a href="register.html" class="footer-link">Create Account</a></li>
+            <li><a href="about.html#values" class="footer-link">Editorial Guidelines</a></li>
+            <li><a href="contact.html" class="footer-link">Help & Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2026</span> INKORA. All rights reserved. Crafted for curious minds.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html" class="footer-link">Privacy Policy</a>
+          <a href="about.html" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/blogs.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
